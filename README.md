@@ -1,6 +1,6 @@
 ### Elastic Beanstalk Link
 
-http://udagram-filter-image-env.eba-uxwvg66d.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg
+http://udagram-filter-image-v2-env.eba-funrbv8d.us-east-1.elasticbeanstalk.com
 
 
 # Udagram Image Filtering Microservice

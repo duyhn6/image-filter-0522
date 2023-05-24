@@ -1,4 +1,5 @@
 import express from 'express';
+import { Request, Response } from "express";
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
@@ -31,22 +32,19 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
   //! END @TODO1
   
-  app.get( "/filteredimage", async ( req: any, res: any ) => {
-    let image_url = req.query.image_url.toString();
-    if ( !image_url ) {
+  app.get("/filteredimage", async (req: Request, res: Response) => {
+    const image_url: string = req.query.image_url.toString(); // Use optional chaining and provide a default value
+  
+    if (!image_url) {
       res.status(400).send("image_url is required");
+      return; // Return early to avoid further execution
     }
-    const filteredpath = await filterImageFromURL(image_url);
+  
+    const filteredpath: string = await filterImageFromURL(image_url);
     res.status(200).sendFile(filteredpath, () => {
       deleteLocalFiles([filteredpath]);
-    })
-  } );
-
-  // Root Endpoint
-  // Displays a simple message to the user
-  app.get( "/", async ( req: any, res: any ) => {
-    res.send("try GET /filteredimage?image_url={{}}")
-  } );
+    });
+  });
   
 
   // Start the Server
